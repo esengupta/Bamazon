@@ -4,7 +4,7 @@ CREATE DATABASE bamazonDB;
 USE bamazonDB;
 
 CREATE TABLE products(
-item_id INT NOT NULL (11)AUTO_INCREMENT,
+item_id INT NOT NULL AUTO_INCREMENT,
 product_name VARCHAR(80) NOT NULL,
 price DECIMAL(13,2)  NOT NULL,
 department_name VARCHAR(50) NOT NULL,
@@ -37,7 +37,7 @@ set department_name = "Misc"
 WHERE item_id = 11;
 
 CREATE TABLE products(
-item_id INT NOT NULL (11)AUTO_INCREMENT,
+item_id INT NOT NULL AUTO_INCREMENT,
 product_name VARCHAR(80) NOT NULL,
 price DECIMAL(13,2)  NOT NULL,
 department_name VARCHAR(50) NOT NULL,
@@ -46,7 +46,7 @@ PRIMARY KEY (item_id)
 );
 
 CREATE TABLE departments(
-  department_id INT(11) AUTO_INCREMENT NOT NULL,
+  department_id INT AUTO_INCREMENT NOT NULL,
   department_name VARCHAR(50) NOT NULL,
   over_head_costs DECIMAL(13,2) NOT NULL,
   PRIMARY KEY (department_id)
