@@ -53,7 +53,7 @@ function queryDatabase() {
         "SELECT * FROM products",
         function (err, res) {
             res.forEach(function (index) {
-                console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.blue(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
+                console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.yellow(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
             });
         })
     connection.end();
@@ -65,7 +65,7 @@ function querylowInventory() {
         "SELECT * FROM products WHERE stock_quantity <=5",
         function (err, res) {
             res.forEach(function (index) {
-                console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.blue(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
+                console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.yellow(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
             });
         })
     connection.end();
