@@ -23,14 +23,12 @@ connection.connect(function (err) {
 });
 
 function managerPrompt() {
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "prompt",
-            message: "Select an Operation",
-            choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
-        },
-    ]).then(function (order) {
+    inquirer.prompt([{
+        type: "list",
+        name: "prompt",
+        message: "Select an Operation",
+        choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"]
+    }, ]).then(function (order) {
         switch (order.prompt) {
             case `View Products for Sale`:
                 queryDatabase();
@@ -67,8 +65,9 @@ function querylowInventory() {
             res.forEach(function (index) {
                 console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.yellow(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
             });
+            connection.end();
+
         })
-    connection.end();
 };
 
 function addInventory() {
@@ -89,17 +88,14 @@ function addInventory() {
         var itemid = order.productId;
         var query = connection.query(
             `SELECT stock_quantity FROM products WHERE ?`,
-            [
-                {
-                    item_id: itemid
-                }
-            ],
+            [{
+                item_id: itemid
+            }],
             function (error, results, field) {
                 var currentQuantity = results[0].stock_quantity
                 var query = connection.query(
                     `UPDATE products SET ? WHERE ?`,
-                    [
-                        {
+                    [{
                             stock_quantity: parseInt(currentQuantity) + parseInt(addQuantity)
                         },
                         {
@@ -139,11 +135,19 @@ function addProduct() {
             message: "How many are you stocking?"
         },
     ]).then(function (addition) {
-        var post = { product_name: addition.prodName, price: parseFloat(addition.prodPrice).toFixed(2), department_name: addition.prodDept, stock_quantity: parseInt(addition.prodQuant) };
+        var post = {
+            product_name: addition.prodName,
+            price: parseFloat(addition.prodPrice).toFixed(2),
+            department_name: addition.prodDept,
+            stock_quantity: parseInt(addition.prodQuant)
+        };
         var query = connection.query(
-            `INSERT INTO products SET ?`, post, function (error, results, fields) {
+            `INSERT INTO products SET ?`, post,
+            function (error, results, fields) {
+
+                console.log(`You have now added ${addition.prodQuant} units of ${addition.prodName} to the ${addition.prodDept} Department at the price of ${addition.prodPrice} per unit`)
+                connection.end();
             });
-        console.log(`You have now added ${addition.prodQuant} units of ${addition.prodName} to the ${addition.prodDept} Department at the price of ${addition.prodPrice} per unit`)
-        connection.end();
+        
     });
 }

@@ -53,6 +53,7 @@ function productSales() {
           resArray = [];
           deptArray = [];
           header = false;
+          console.log(res);
           res.forEach(function (object) {
               if (header === false) {
                   for (var index in object) {
@@ -70,8 +71,9 @@ function productSales() {
           });
           output = table(resArray);
           console.log(output);
+          connection.end();
+
       })
-  connection.end();
 };
 
 function addDepartment() {
