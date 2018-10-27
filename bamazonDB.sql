@@ -65,4 +65,9 @@ ALTER TABLE products ADD COLUMN product_sales DECIMAL(13,2) DEFAULT 0.00;
 
 ALTER TABLE products DROP COLUMN product_sales;
 
+SELECT departments.department_id,products.department_name,departments.over_head_costs ,SUM(products.product_sales) AS product_sales , SUM(products.product_sales) - departments.over_head_costs AS total_profit
+FROM products INNER JOIN departments
+ON products.department_name = departments.department_name
+GROUP BY departments.department_name;
+
 
