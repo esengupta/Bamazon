@@ -47,27 +47,29 @@ function managerPrompt() {
 };
 
 function queryDatabase() {
+    console.log("hi");
     var query = connection.query(
         "SELECT * FROM products",
         function (err, res) {
             res.forEach(function (index) {
                 console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.yellow(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
             });
-        })
-    connection.end();
+            connection.end();
+        });
 
 };
 
 function querylowInventory() {
     var query = connection.query(
-        "SELECT * FROM products WHERE stock_quantity <=5",
+        "SELECT * FROM products WHERE stock_quantity <= 9",
         function (err, res) {
+            if (err) throw err;
             res.forEach(function (index) {
                 console.log(`Product ID: ${chalk.red(index.item_id)} Product Name: ${chalk.green(index.product_name)} Price: ${chalk.yellow(index.price)} Stock: ${chalk.blue(index.stock_quantity)}`);
             });
             connection.end();
-
         })
+    console.log(query.sql);
 };
 
 function addInventory() {

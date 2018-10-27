@@ -20,10 +20,9 @@ Then you will be able to make your selection by using the arrow key to drop down
 
  ![product list for sale](/images/productlistForSale.PNG)
 
-2. Second option will show you what items you have with 5 or less in stock.
- (View Low Inventory)
-
-image not uploaded  showing error..
+2. Second option will show you what items you have with 9 or less in stock.
+   
+  ![Low Inventory](/images/lowInventory.PNG)
 
 3. Third selection will allow you to select a particular item by product id and add stock to it. This is done by inputting the product id for the item you would like to add then input the quantity you would like to add.
    
