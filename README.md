@@ -39,7 +39,6 @@ This will show you the initial screen.
 
 With first selection it will generate a table that includes all departments you have products for and their overhead cost. It will show you the overall sales for the department and compute what your total profit for that department is.
 
-image not uploaded  showing error..(view product sales by department)
 
 Second Selection will enable you create a new department by inputting the new departments name and it's overhead cost associated with it.
 

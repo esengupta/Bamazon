@@ -74,6 +74,7 @@ function productSales() {
           connection.end();
 
       })
+      
 };
 
 function addDepartment() {
